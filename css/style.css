@@ -220,7 +220,7 @@ h2.title {
 }
 
 .timeline {
-    width: 500px;
+    width: 550px;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -232,6 +232,7 @@ h2.title {
     border-radius: 7px;
     border: 1px solid #FFB500;
     padding: 15px;
+    width: 100%;
 }
 
 .timeline .achievement .date {
@@ -242,6 +243,26 @@ h2.title {
     align-items: center;
     /* font-weight: 300; */
     margin-bottom: 10px;
+}
+
+.achievement.disable {
+    border: 1px solid #A1A1AD;
+}
+
+.achievement.disable .title {
+    color: #BDBDCA;
+}
+
+.achievement.disable .date p {
+    color: #F76D00;
+}
+
+.achievement.disable .icon-tabler-calendar-event {
+    stroke: #F76D00;
+}
+
+.achievement.disable .text {
+    color: #7E7E7E;
 }
 
 /* PROJETOS */
@@ -297,7 +318,7 @@ h2.title {
     gap: 7px;
 }
 
-.technologies .technology {
+.technologies .technology, .technologies li {
     color: #FFB500;
     background-color: rgba(255, 199, 0, 0.15);
     font-size: 12px;
