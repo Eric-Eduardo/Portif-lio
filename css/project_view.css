@@ -59,8 +59,10 @@
     display: flex;
     align-items: center;
     gap: 7px;
-    color: #FFB500;
+    /* color: #FFB500; */
+    color: #636377;
     font-size: 15px;
+    font-weight: 500;
 }
 
 .project-view .title {

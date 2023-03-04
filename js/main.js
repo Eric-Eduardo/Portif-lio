@@ -14,41 +14,110 @@ const achievements = [
 ];
 const projects = [
     {
+        id: 1,
         title: "Habits",
-        year: 2023,
+        date: new Date(2023, 0),
         technologies: ["HTML", "CSS", "JavaScript"],
         links: {"Site":"https://eric-eduardo.github.io/nlw-setup-habits/", "Github":"https://github.com/Eric-Eduardo/nlw-setup-habits", "Figma":"https://www.figma.com/community/file/1195327109778210238"},
         image: "./img/captura_habits.png",
         about: "Projeto desenvolvido na NLW Setup, evento promovido pela Rocketsear. Habits consistem em um site para registros/checklist de rotinas diárias, como beber água, caminhar, estudar etc"
     },
     {
+        id: 2,
         title: "Cronômetro online",
-        year: 2023,
+        date: new Date(2022, 11),
         technologies: ["HTML", "CSS", "JavaScript"],
         links: {"Site":"https://eric-eduardo.github.io/cronometroonline/", "Github":"https://github.com/Eric-Eduardo/cronometroonline"},
         image: "./img/Captura_cronometro_online.png",
         about: "Um sitema de contagem progressiva."
     },
     {
+        id: 3,
         title: "Jogo da Velha",
-        year: 2023,
+        date: new Date(2023, 0),
         technologies: ["HTML", "CSS", "JavaScript"],
-        links: {"Site":"#", "Github":"#"},
+        links: {"Site":"https://eric-eduardo.github.io/jogo-da-velha/", "Github":"https://github.com/Eric-Eduardo/jogo-da-velha"},
         image: "./img/captura_jogo_da_velha.png",
         about: "Um jogo da velha de dois jogadores."
     },
     {
+        id: 4,
         title: "Galeria de Desenhos",
-        year: 2023,
+        date: new Date(2023, 0),
         technologies: ["HTML", "CSS", "JavaScript"],
         links: {"Site":"https://eric-eduardo.github.io/Galeria-de-desenhos/", "Github":"https://github.com/Eric-Eduardo/Galeria-de-desenhos"},
         image: "./img/captura-site-desenho.png",
         about: "Este projeto consiste na construção de uma galeria online, no qual é possível visualizar desenhos (feitos por mim ✌️). Os desenhos são organizados em categorias, para facilitar a organização. Além disso, na página inicial há informações sobre o autor, bem como contato."
+    },
+    {
+        id: 5,
+        title: "Sudoku solver",
+        date: new Date(2023, 0),
+        technologies: ["HTML", "CSS", "JavaScript"],
+        links: {"Site":"https://eric-eduardo.github.io/Sudoku-solver/", "Github":"https://github.com/Eric-Eduardo/Sudoku-solver"},
+        image: "./img/captura_sudoku_solver.png",
+        about: "Este projeto consiste em um solucionador de sudoku. O usuário insere os números em um template que corresponde a um jogo do sudoku. O programa então retorna um jogo válido resolvido."
+    },
+    {
+        id: 6,
+        title: "To-do List",
+        date: new Date(2023, 0),
+        technologies: ["HTML", "CSS", "JavaScript"],
+        links: {"Github":"https://github.com/Eric-Eduardo/To-Do-List"},
+        image: "./img/captura_to_do_list.png",
+        about: "Um sistema de To-do List simples. Os dados são armazenados no local storage, o que permite que cada dispositivo guarde suas próprias tarefas."
+    },
+    {
+        id: 7,
+        title: "Mini Projeto Lâmpada",
+        date: new Date(2022, 9),
+        technologies: ["HTML", "CSS", "JavaScript"],
+        links: {"Github":"https://github.com/Eric-Eduardo/mini-projeto-lampada"},
+        image: "./img/captura_mini_projeto_lampada.png",
+        about: "Mini projeto de acender, apagar e quebrar uma lâmpada. O projeto foi fruto apenas do início do meu aprendizado de JavaScript."
+    },
+    {
+        id: 8,
+        title: "Mini Projeto Semáforo",
+        date: new Date(2022, 9),
+        technologies: ["HTML", "CSS", "JavaScript"],
+        links: {"Github":"https://github.com/Eric-Eduardo/mini-projeto-semaforo"},
+        image: "./img/captura_mini_projeto_semaforo.png",
+        about: "Mini projeto de um cemáforo, no qual é possível modificar o estado do semáforo manualmente ou deixar como automático. O projeto foi fruto apenas do início do meu aprendizado de JavaScript."
+    },
+    {
+        id: 9,
+        title: "Calculadora de IMC",
+        date: new Date(2022, 9),
+        technologies: ["HTML", "CSS", "JavaScript"],
+        links: {"Site":"https://eric-eduardo.github.io/Calculadora-IMC/", "Github":"https://github.com/Eric-Eduardo/Calculadora-IMC"},
+        image: "./img/captura_calculadora_imc.png",
+        about: "Uma calculadora de IMC (Índice de Massa Corporal). O projeto foi fruto apenas do início do meu aprendizado de JavaScript."
+    },
+    {
+        id: 10,
+        title: "Rocketcoffee",
+        date: new Date(2022, 7),
+        technologies: ["HTML", "CSS"],
+        links: {"Site":"https://eric-eduardo.github.io/rocketcoffee/", "Github":"https://github.com/Eric-Eduardo/rocketcoffee"},
+        image: "./img/captura_rocketcoffee.png",
+        about: "Rocketcoffee é um cardápio online desenvolvido durante a Maratona Explorer 3.0, da Rocketseat."
+    },
+    {
+        id: 11,
+        title: "Slider Pokemon",
+        date: new Date(2022, 7),
+        technologies: ["HTML", "CSS", "JavaScript"],
+        links: {"Site":"https://eric-eduardo.github.io/projeto-slider-pokemon/", "Github":"https://github.com/Eric-Eduardo/projeto-slider-pokemon"},
+        image: "./img/captura_pokemon_slider.png    ",
+        about: "Amostra de Pokemons. O site foi desenvolvido no evento MapaDev Week."
     }
 ];
 const divViewProject = document.querySelector('.project-view');
 const elementCloseProject = document.querySelector('.project-view .icon-tabler-x');
 const timeline = document.querySelector('.timeline');
+const months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+const favoriteProjectsId = [1, 2, 3, 4, 5];
 
 
 // Ordenar as conquistas por data em ordem crescente
@@ -67,15 +136,12 @@ achievements.sort(function(a, b) {
 });
 
 // Mostra as conquistas na tela
-
 for (idc in achievements) {
     var period = '';
-
-    if (achievements[idc].endDate != 0)
-        period = achievements[idc].startDate + '-' + achievements[idc].endDate;
-    else
-        period = 'Em andamento';
-
+    
+    if (achievements[idc].endDate != 0) period = achievements[idc].startDate + '-' + achievements[idc].endDate;
+    else period = 'Em andamento';
+    
     insertAchievement(achievements[idc].title, period, achievements[idc].description);
 
     if (idc < achievements.length-1) {
@@ -85,16 +151,30 @@ for (idc in achievements) {
     }
 }
 
-// Mostra os projetos na tela
-for (let i in projects) {
-    insertProject(projects[i].title, projects[i].technologies, projects[i].about, projects[i].image, i);
+//Ordenar os projetos em ordem decrescente pela data
+projects.sort(sortProjectsByDate);
+
+
+// Mostra os projetos na página inicial
+const compareProject = (project) => favoriteProjectsId.includes(project.id);
+const  filteredProjects =  projects.filter(compareProject);
+for (let i in filteredProjects) {
+    insertProject(filteredProjects[i].title, filteredProjects[i].technologies, filteredProjects[i].about, filteredProjects[i].image, i);
 }
+
 
 // Eventos da visualização do projeto
 elementCloseProject.addEventListener('click', closeViewProject);
 divViewProject.addEventListener('click', (event) => {if (event.target.className=="project-view") closeViewProject()});
 
 //Funções
+function sortProjectsByDate(a, b) {
+    // a<b: -1, a>b: 1, a=b: 0 
+    if (a.date<b.date) return 1;
+    else if (a.date>b.date) return -1;
+    else return 0;
+}
+
 function insertAchievement(title, period, description) {
     const timeline = document.querySelector('.timeline');
     const elAchievement = document.createElement('div');
@@ -150,6 +230,8 @@ function insertProject (title, technologies, about, srcImage, id) {
     divCard.addEventListener('click',  ()=>{viewProject(id)});
 
     h2Title.textContent = title;
+    // h2Title.textContent = `${title} - ${months[projects[id].date.getMonth()]} ${projects[id].date.getFullYear()}`
+    // h2Title.textContent = `${title}-${months[projects[id].date.getMonth()]}`
     pText.textContent = about;
     divCardContent.appendChild(h2Title);
     divCardContent.appendChild(pText);
@@ -188,7 +270,7 @@ function viewProject(id) {
         document.querySelector(".project-view .image img").src = projects[id].image;
     }
 
-    document.querySelector(".project-view .date p").innerHTML = projects[id].year;
+    document.querySelector(".project-view .date p").innerHTML = `${months[projects[id].date.getMonth()]} ${projects[id].date.getFullYear()}`;
     
     document.querySelector(".project-view .title").innerHTML = projects[id].title;
     
