@@ -18,6 +18,37 @@ body {
     cursor: pointer;
 }
 
+.button-400 {
+    background-color: #3A394D;
+    /* width: 180px; */
+    color: rgb(231, 231, 231);
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 15px;
+    border-radius: 7px;
+    border: none;  
+    width: fit-content;
+}
+
+.button-800 {
+    background-color: #FFB500;
+    /* width: 180px; */
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 15px;
+    border-radius: 7px;
+    border: none;  
+    width: fit-content;
+}
+
+
 .text {
     /* color: #9696ab; */
     color: #BDBDCA;
@@ -318,9 +349,9 @@ h2.title {
     gap: 7px;
 }
 
-.technologies .technology, .technologies li {
+.technologies li {
     color: #FFB500;
-    background-color: rgba(255, 199, 0, 0.15);
+    background-color: rgba(255, 199, 0, 0.12);
     font-size: 12px;
     padding: 3px 10px;
     border-radius: 20px;
@@ -471,5 +502,110 @@ input:-webkit-autofill {
 }
 
 
+/* ----- PROJETOS ----- */
+.filter {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    background-color: #191925;
+    border-radius: 7px;
+    padding: 10px;
+    margin-bottom: 100px;
+}
 
+.filter .selection-options {
+    display: flex;
+    gap: 10px;
+}
 
+.filter .selection-options .btn {
+    background-color: transparent;
+    border: none;
+    color: #828293;
+    font-weight: 600;
+}
+
+.filter .selection-options .btn:hover {
+    color: #BDBDCA;
+}
+
+.filter .options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.filter .options input {
+    display: none;
+}
+
+.filter .options label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFB500;
+    background-color: rgba(255, 181, 0, .1);
+    padding: 3px 10px;
+    border-radius: 20px
+}
+
+.filter .options input:checked + label {
+    background-color: #FFB500;
+    color: white; 
+}
+
+.filter .technologies li:hover {
+    cursor: pointer;
+}
+
+#back-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+.apply-filter {
+    align-self: flex-end;
+}
+
+/* ----- PAGINATOR ----- */
+.paginator {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+}
+
+.paginator svg:hover {
+    cursor: pointer;
+}
+
+.paginator div {
+    display: flex;
+    gap: 5px;
+}
+
+.paginator div span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 7px;
+    background-color: transparent;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.paginator div span:hover{
+    background-color: #302F40;
+    /* border: 1px solid #ffb500; */
+    cursor: pointer;
+}
+
+/* .paginator div span.selected {
+    background-color: #FFB500;
+} */

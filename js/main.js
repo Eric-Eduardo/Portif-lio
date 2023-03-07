@@ -109,15 +109,162 @@ const projects = [
         date: new Date(2022, 7),
         technologies: ["HTML", "CSS", "JavaScript"],
         links: {"Site":"https://eric-eduardo.github.io/projeto-slider-pokemon/", "Github":"https://github.com/Eric-Eduardo/projeto-slider-pokemon"},
-        image: "./img/captura_pokemon_slider.png    ",
+        image: "./img/captura_pokemon_slider.png",
         about: "Amostra de Pokemons. O site foi desenvolvido no evento MapaDev Week."
     }
 ];
+
+const idFavoriteProjects = [2, 3, 4, 5];
+const divProjectsContent = document.querySelector('.projects-content');
+const months = ['jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+let filteredProjects = projects;
+let pageIndex = 0;
+let intemsPerPage = 4;
+
+
+if (window.location.pathname.endsWith('index.html')) {
+    // Adicionar os projetos na página index.html
+    for (let id of idFavoriteProjects) {
+        let prj = projects.filter((project) => project.id == id)[0];
+        // let date = months[prj.date.getMonth()] + " " + prj.date.getFullYear();
+
+        let divProject = createDivProject(id, prj.title, prj.technologies, prj.image, prj.about);
+        divProject.addEventListener('click', () => {viewProject(id)});
+        divProjectsContent.appendChild(divProject);
+    }
+} else {
+    document.querySelector('.paginator .icon-tabler-chevron-left').addEventListener("click", () => {
+        if (pageIndex>0) { 
+            pageIndex-=1;
+            loadProjects();
+        }
+    });
+    document.querySelector('.paginator .icon-tabler-chevron-right').addEventListener("click", () => {
+        if (pageIndex<(filteredProjects.length/intemsPerPage)-1) { 
+            pageIndex+=1;
+            loadProjects();
+        }
+    });
+    loadProjects();
+}
+
+
+function loadProjects() {
+    divProjectsContent.innerHTML = '';
+
+    for (let i = pageIndex*intemsPerPage; i<(pageIndex*intemsPerPage)+intemsPerPage; i++) {
+        
+        if (!filteredProjects[i]) { break }
+
+        const item = createDivProject(filteredProjects[i].id, filteredProjects[i].title, filteredProjects[i].technologies, filteredProjects[i].image, filteredProjects[i].about);
+
+        item.addEventListener('click', () => {viewProject(filteredProjects[i].id)});
+
+        divProjectsContent.appendChild(item);
+    }
+
+    loadPagination();
+}
+
+function loadPagination() {
+    const paginatorNav = document.querySelector('.paginator div');
+    paginatorNav.innerHTML = '';
+
+    for (let i = 0; i < (filteredProjects.length/intemsPerPage); i++) {
+        
+        const span = document.createElement('span');
+        span.innerHTML = i+1;
+        span.addEventListener('click', (e) => {
+            pageIndex = i;
+            loadProjects();
+        });
+
+        if (i === pageIndex) {
+            span.style.backgroundColor = '#FFB500';
+        }
+
+        paginatorNav.appendChild(span);
+    }
+}
+
+function createDivProject(id, title, technologies, image, about) {
+    /*<div class="card">
+        <div class="info">
+            <div class="card-content">
+                <h2 class="title">Habits</h2>
+                <p class="text">Projeto desenvolvido na NLW Setup, evento promovido pela Rocketsear. Habits consistem em um site para registros/checklist de rotinas diárias, como beber água, caminhar, estudar etc</p>
+            </div>
+            <ul class="technologies">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+            </ul>
+        </div>
+        <div class="card-img">
+            <img src="./img/captura_habits.png">
+        </div>
+    </div>*/
+
+    const divCard = document.createElement('div');
+    divCard.className = 'card';
+
+    const  divInfo = document.createElement('div');
+    divInfo.className = 'info';
+
+    const divCardContent = document.createElement('div');
+    divCardContent.className = 'card-content';
+    const h2Title = document.createElement('h2');
+    h2Title.className = 'title';
+    const pText = document.createElement('p');
+    pText.className = 'text';
+
+    h2Title.innerText = title;
+    pText.innerText = about;
+
+    divCardContent.appendChild(h2Title);
+    divCardContent.appendChild(pText);
+    
+    const ulTechnologies = document.createElement('ul');
+    ulTechnologies.className = 'technologies';
+    for (let tech of technologies) {
+        const li = document.createElement('li');
+        li.innerText = tech;
+        ulTechnologies.append(li);
+    }
+
+    divInfo.appendChild(divCardContent);
+    divInfo.appendChild(ulTechnologies);
+    divCard.appendChild(divInfo);
+
+    var img = new Image();
+    img.src = image;
+    img.onload = () => {
+        const divImage = document.createElement('div');
+        divImage.className = 'card-img';
+        divImage.appendChild(img);
+        divCard.appendChild(divImage);
+    }
+
+
+    
+    return divCard;
+}
+
+function viewProject(id) {
+    const project = projects.filter((project) => project.id == id)[0];
+    
+    // console.log(project.title);
+
+}
+
+/*
 const divViewProject = document.querySelector('.project-view');
 const elementCloseProject = document.querySelector('.project-view .icon-tabler-x');
 const timeline = document.querySelector('.timeline');
 const months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 const favoriteProjectsId = [1, 2, 3, 4, 5];
+
+
 
 
 // Ordenar as conquistas por data em ordem crescente
@@ -176,6 +323,9 @@ function sortProjectsByDate(a, b) {
 }
 
 function insertAchievement(title, period, description) {
+
+    
+
     const timeline = document.querySelector('.timeline');
     const elAchievement = document.createElement('div');
     const elTitle = document.createElement('h2');
@@ -288,7 +438,14 @@ function viewProject(id) {
     document.querySelector('body').style.overflow = 'hidden';
 }
 
+// function renderProjects() {
+//     for(let obj in projects) {
+//         insertProject
+//     }
+// }
+
 function closeViewProject() {
     divViewProject.style.visibility = 'hidden';
     document.querySelector('body').style.overflow = 'visible';
 }
+*/

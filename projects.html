@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/project_view.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="project-view">
+        <div class="view">
+            <div class="image">
+                <img src="./img/captura_jogo_da_velha.png" alt="jogo da velha">
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x btn" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+            <div class="content">
+                <div class="header-content">
+                    <div class="date">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#636377" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <rect x="4" y="5" width="16" height="16" rx="2" />
+                            <line x1="16" y1="3" x2="16" y2="7" />
+                            <line x1="8" y1="3" x2="8" y2="7" />
+                            <line x1="4" y1="11" x2="20" y2="11" />
+                            <rect x="8" y="15" width="2" height="2" />
+                        </svg>
+                        <p>2022</p>
+                    </div>
+                    <h1 class="title">Título do Projeto</h1>
+                    <ul class="technologies">
+                        <!-- <li>HTML</li> -->
+                    </ul>
+                </div>
+                <div class="body-content">
+                    <h2 class="subtitle">Links</h2>
+                    <ul class="links">
+                        <!-- <li class="btn">Site</li>
+                        <li class="btn">Github</li> -->
+                    </ul>
+
+                    <h2 class="subtitle">Sobre o projeto</h2>
+
+                    <div class="text-content">
+                        <p class="text description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse, quod. Tenetur dignissimos, odit aliquid praesentium doloribus cumque ipsa in architecto incidunt doloremque modi consectetur earum nihil, nobis suscipit deserunt asperiores. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse, quod. Tenetur dignissimos, odit aliquid praesentium doloribus cumque ipsa in architecto incidunt doloremque modi consectetur earum nihil, nobis suscipit deserunt asperiores.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <a href="./index.html#projects">
+        <button class="btn button-800" id="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <line x1="5" y1="12" x2="11" y2="18" />
+            <line x1="5" y1="12" x2="11" y2="6" />
+            </svg>
+            Voltar
+        </button>
+    </a>
+    <main>
+        <section id="home">
+            <h1 class="section-title">Projetos</h1>
+            <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet dolorem laboriosam deleniti laborum fugit quas obcaecati quae tempora quo, eius quibusdam odit ducimus ipsa provident adipisci, vero dolor possimus quasi.</p>
+        </section>
+        <section>
+            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae omnis mollitia laudantium dolore. Tenetur cupiditate expedita nisi amet aperiam. Quod eveniet veritatis itaque praesentium excepturi labore laudantium ex dicta nesciunt.</p>
+            
+            <div class="filter">
+                <div class="selection-options">
+                    <button class="btn" id="check-all">Marcar Todos</button>
+                    <button class="btn" id="uncheck-all">Desmarcar Todos</button>
+                </div>
+                <ul class="options">
+                    <input type="checkbox" id="html" name="technology">
+                    <label class="btn" for="html">HTML</label>
+                    <input type="checkbox" id="css" name="technology">
+                    <label class="btn" for="css">CSS</label>
+                    <input type="checkbox" id="javascript" name="technology">
+                    <label class="btn" for="javascript">JavaScript</label>
+                    <input type="checkbox" id="php" name="technology">
+                    <label class="btn" for="php">PHP</label>
+                </ul>
+                <button class="btn button-400 apply-filter">Aplicar Filtros</button>
+            </div>
+            <div class="projects-content">
+                <!-- <div class="card">
+                    <div class="info">
+                        <div class="card-content">
+                            <h2 class="title">Habits</h2>
+                            <p class="text">Projeto desenvolvido na NLW Setup, evento promovido pela Rocketsear. Habits consistem em um site para registros/checklist de rotinas diárias, como beber água, caminhar, estudar etc</p>
+                        </div>
+                        <ul class="technologies">
+                            <li class="technology">HTML</li>
+                            <li class="technology">CSS</li>
+                            <li class="technology">JavaScript</li>
+                        </ul>
+                    </div>
+                    <div class="card-img">
+                        <img src="./img/captura_habits.png">
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="paginator">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <polyline points="15 6 9 12 15 18" />
+                </svg>
+                <div>
+                    <!-- <span>1</span>
+                    <span>2</span>
+                    <span>3</span> -->
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <polyline points="9 6 15 12 9 18" />
+                </svg>
+            </div>
+        </section>
+    </main>
+    <script src="./js/main.js"></script>
+    <script src="./js/projetc_view.js"></script>
+</body>
+</html>
