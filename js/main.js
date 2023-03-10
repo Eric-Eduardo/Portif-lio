@@ -127,7 +127,7 @@ document.querySelector('.project-view').addEventListener('click', (event) => {
 });
 
 
-if (window.location.pathname.endsWith('index.html')) {
+if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('Portifolio/')) {
     // Inserir as conquistas
     const divTimeLine = document.querySelector('#achievements .timeline');
     
