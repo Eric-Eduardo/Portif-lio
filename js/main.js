@@ -121,33 +121,52 @@ let filteredProjects = projects;
 let pageIndex = 0;
 let intemsPerPage = 4;
 
+document.querySelector('.project-view').addEventListener('click', (event) => {
+    console.log(event.target.localName);
+    if (event.target.className=="project-view" || event.target.localName=="svg" || event.target.parentNode.localName=="svg") closeViewProject()
+});
+
 
 if (window.location.pathname.endsWith('index.html')) {
+    // Inserir as conquistas
+    const divTimeLine = document.querySelector('#achievements .timeline');
+    
+    for (let i in achievements) {
+        divTimeLine.appendChild(createDivAchievement(achievements[i].title, achievements[i].startDate, achievements[i].endDate, achievements[i].description));
+        
+        if (i < achievements.length-1) {
+            divTimeLine.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11" height="60">
+                                        <line x1="5" y1="0" x2="5" y2="60" stroke-width="1" stroke="#FFB500" stroke-dasharray="9"></line>
+                                    </svg>`;
+        }
+    }
+
     // Adicionar os projetos na página index.html
     for (let id of idFavoriteProjects) {
         let prj = projects.filter((project) => project.id == id)[0];
-        // let date = months[prj.date.getMonth()] + " " + prj.date.getFullYear();
-
         let divProject = createDivProject(id, prj.title, prj.technologies, prj.image, prj.about);
         divProject.addEventListener('click', () => {viewProject(id)});
         divProjectsContent.appendChild(divProject);
     }
 } else {
-    document.querySelector('.paginator .icon-tabler-chevron-left').addEventListener("click", () => {
-        if (pageIndex>0) { 
-            pageIndex-=1;
-            loadProjects();
+    
+    document.querySelector('#check-all').addEventListener('click', () => {
+        let labelOptions = document.querySelectorAll('.options input');
+        for (let label of labelOptions) {
+            label.checked = true;
         }
     });
-    document.querySelector('.paginator .icon-tabler-chevron-right').addEventListener("click", () => {
-        if (pageIndex<(filteredProjects.length/intemsPerPage)-1) { 
-            pageIndex+=1;
-            loadProjects();
+    document.querySelector('#uncheck-all').addEventListener('click', () => {
+        let labelOptions = document.querySelectorAll('.options input');
+        for (let label of labelOptions) {
+            label.checked = false;
         }
     });
+    
     loadProjects();
-}
 
+    document.querySelector('.apply-filter').addEventListener('click', applyFilter);
+}
 
 function loadProjects() {
     divProjectsContent.innerHTML = '';
@@ -167,24 +186,70 @@ function loadProjects() {
 }
 
 function loadPagination() {
-    const paginatorNav = document.querySelector('.paginator div');
+    const paginatorNav = document.querySelector('.paginator');
+    const div = document.createElement('div');
+
     paginatorNav.innerHTML = '';
 
-    for (let i = 0; i < (filteredProjects.length/intemsPerPage); i++) {
-        
-        const span = document.createElement('span');
-        span.innerHTML = i+1;
-        span.addEventListener('click', (e) => {
-            pageIndex = i;
-            loadProjects();
-        });
+    if (filteredProjects.length > 0) {
+    //adicinoar os botões
 
-        if (i === pageIndex) {
-            span.style.backgroundColor = '#FFB500';
+
+        for (let i = 0; i < (filteredProjects.length/intemsPerPage); i++) {
+            
+            const span = document.createElement('span');
+            span.innerHTML = i+1;
+            span.addEventListener('click', (e) => {
+                pageIndex = i;
+                loadProjects();
+            });
+
+            if (i === pageIndex) {
+                span.style.backgroundColor = '#FFB500';
+            }
+
+            div.appendChild(span);
         }
-
-        paginatorNav.appendChild(span);
+        paginatorNav.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <polyline points="15 6 9 12 15 18" />
+        </svg>`;
+        paginatorNav.appendChild(div);
+        paginatorNav.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <polyline points="9 6 15 12 9 18" />
+        </svg>`;
+        document.querySelector('.paginator .icon-tabler-chevron-left').addEventListener("click", () => {
+            if (pageIndex>0) { 
+                pageIndex-=1;
+                loadProjects();
+            }
+        });
+        document.querySelector('.paginator .icon-tabler-chevron-right').addEventListener("click", () => {
+            if (pageIndex<(filteredProjects.length/intemsPerPage)-1) { 
+                pageIndex+=1;
+                loadProjects();
+            }
+        });
+    } else {
+        paginatorNav.innerHTML = `<div class='error-message'><svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_143_2)">
+        <path d="M50 87.5C70.7107 87.5 87.5 70.7107 87.5 50C87.5 29.2893 70.7107 12.5 50 12.5C29.2893 12.5 12.5 29.2893 12.5 50C12.5 70.7107 29.2893 87.5 50 87.5Z" stroke="#BDBDCA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M37.5 41.6666H37.5417" stroke="#BDBDCA" stroke-width="6.25" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M62.5 41.6666H62.5417" stroke="#BDBDCA" stroke-width="6.25" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M39.5833 66.6666C47.0468 61.994 55.7989 59.806 64.5833 60.4166" stroke="#BDBDCA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_143_2">
+        <rect width="100" height="100" fill="white"/>
+        </clipPath>
+        </defs>
+    </svg>
+    <h2>Oops, não foram encontrados resultados!</h2>
+    <p class="text">Não foi possível encontrar projetos para essas tecnologias. Por favor, selecine outras opções!</p>
+    </div>`;
     }
+    
 }
 
 function createDivProject(id, title, technologies, image, about) {
@@ -250,11 +315,123 @@ function createDivProject(id, title, technologies, image, about) {
     return divCard;
 }
 
+function createDivAchievement(title, startDate, endDate, description) {
+    /*
+    <div class="achievement">
+        <h2 class="title">Título</h2>
+        <div class="date">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ce9400" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                <line x1="16" y1="3" x2="16" y2="7"></line>
+                <line x1="8" y1="3" x2="8" y2="7"></line>
+                <line x1="4" y1="11" x2="20" y2="11"></line>
+                <rect x="8" y="15" width="2" height="2"></rect>
+            </svg>
+            <p>2018-2021</p>
+        </div>
+        <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, vitae deleniti. Molestias delectus quisquam quaerat vero neque illum accusamus saepe officiis perspiciatis, necessitatibus excepturi impedit tempore alias ea debitis nihil.</p>
+    </div>
+    */
+    const divAchievement = document.createElement('div');
+    divAchievement.className = 'achievement';
+
+    const h2Title = document.createElement('h2');
+    h2Title.className = 'title';
+    h2Title.innerText = title;
+
+    let date = '';
+    if (endDate == 0) {
+        date = startDate + '-Agora';
+        divAchievement.classList.add('disable');
+    } else if (startDate == endDate) { date = startDate; }
+    else { date = startDate + '-' + endDate; }
+    
+    const divDate = document.createElement('div');
+    divDate.className = 'date';
+    divDate.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ce9400" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                            <line x1="16" y1="3" x2="16" y2="7"></line>
+                            <line x1="8" y1="3" x2="8" y2="7"></line>
+                            <line x1="4" y1="11" x2="20" y2="11"></line>
+                            <rect x="8" y="15" width="2" height="2"></rect>
+                        </svg>
+                        <p>${date}</p>`;
+
+    const pText = document.createElement('p');
+    pText.className = 'text';
+    pText.innerText = description;
+
+    divAchievement.appendChild(h2Title);
+    divAchievement.appendChild(divDate);
+    divAchievement.appendChild(pText);
+
+    return divAchievement;
+}
+
 function viewProject(id) {
     const project = projects.filter((project) => project.id == id)[0];
-    
-    // console.log(project.title);
+    const divImg = document.querySelector('.project-view .view .image');
 
+    if (divImg != null) divImg.parentNode.removeChild(divImg);
+
+    document.querySelector('.project-view .technologies').innerHTML = '';
+    document.querySelector('.project-view .links').innerHTML = '';
+    
+    document.querySelector('.project-view .date p').innerText = months[project.date.getMonth()] + " " + project.date.getFullYear();
+    document.querySelector('.project-view .title').innerText = project.title;
+
+    for (let tech of project.technologies) {
+        document.querySelector('.project-view .technologies').innerHTML += `<li>${tech}</li>`;
+    }
+
+    for (let key of Object.keys(project.links)) {
+        document.querySelector('.project-view .links').innerHTML += `<a href=${project.links[key]} target="_blank"><li>${key}</li></a>`;
+    }
+
+    document.querySelector('.project-view .description').innerText = project.about;
+
+    if (project.image) {
+        var img = new Image();
+        img.src = project.image;
+        img.onload = () => {
+            document.querySelector(".project-view .view").innerHTML += `
+            <div class="image">
+                <img src="${project.image}">
+            </div>`;
+        }
+    }
+
+    document.querySelector('.project-view').style.visibility = 'visible';
+    document.querySelector('html').style.overflow = 'hidden';
+}
+
+function closeViewProject() {
+    document.querySelector('.project-view').style.visibility = 'hidden';
+    document.querySelector('html').style.overflow = 'visible';
+}
+
+function applyFilter() {
+    const options = [];
+    filteredProjects = [];
+    // const idProjects = [];
+
+    for (let name of document.querySelectorAll('.filter .options input:checked + label')) {
+        options.push(name.innerText);
+    }
+    
+    for (let project of projects) {
+        for (let option of options) {
+            if (project.technologies.includes(option)) {
+                // console.log("O projeto " + project.title + " possui as tecnologias");
+                filteredProjects.push(project);
+                break;
+            }
+        }
+    }
+
+    loadProjects();
 }
 
 /*

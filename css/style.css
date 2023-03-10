@@ -516,7 +516,7 @@ input:-webkit-autofill {
 
 .filter .selection-options {
     display: flex;
-    gap: 10px;
+    gap: 15px;
 }
 
 .filter .selection-options .btn {
@@ -606,6 +606,17 @@ input:-webkit-autofill {
     cursor: pointer;
 }
 
-/* .paginator div span.selected {
-    background-color: #FFB500;
-} */
+.error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.error-message h2{
+    font-size: 26px;
+    font-weight: 500;
+    /* color: #4f4f6c; */
+    color: #BDBDCA;
+}

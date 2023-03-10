@@ -10,11 +10,11 @@
     align-items: center;
     justify-content: center;
     visibility: hidden;
-    
 }
 
 .project-view .view {
     display: flex;
+    flex-direction: row-reverse;
     background-color: #212131;
     padding: 20px;
     width: 90%;
@@ -40,11 +40,12 @@
     object-position: top;
 }
 
-.project-view .icon-tabler-x {
+.project-view  .icon-tabler-x{
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 10px;
+    right: 10px;
 }
+
 .project-view .content {
     flex: 3;
     display: flex;
