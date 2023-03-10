@@ -122,7 +122,6 @@ let pageIndex = 0;
 let intemsPerPage = 4;
 
 document.querySelector('.project-view').addEventListener('click', (event) => {
-    console.log(event.target.localName);
     if (event.target.className=="project-view" || event.target.localName=="svg" || event.target.parentNode.localName=="svg") closeViewProject()
 });
 
@@ -184,7 +183,6 @@ function loadProjects() {
 
     loadPagination();
 }
-
 function loadPagination() {
     const paginatorNav = document.querySelector('.paginator');
     const div = document.createElement('div');
@@ -192,17 +190,12 @@ function loadPagination() {
     paginatorNav.innerHTML = '';
 
     if (filteredProjects.length > 0) {
-    //adicinoar os botões
-
 
         for (let i = 0; i < (filteredProjects.length/intemsPerPage); i++) {
             
             const span = document.createElement('span');
-            span.innerHTML = i+1;
-            span.addEventListener('click', (e) => {
-                pageIndex = i;
-                loadProjects();
-            });
+            span.innerText = i+1;
+
 
             if (i === pageIndex) {
                 span.style.backgroundColor = '#FFB500';
@@ -219,6 +212,14 @@ function loadPagination() {
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <polyline points="9 6 15 12 9 18" />
         </svg>`;
+        
+        for (let span of document.querySelectorAll('.paginator span')) {
+            span.addEventListener('click', () => {
+                pageIndex = Number(span.innerText)-1;
+                loadProjects();
+            });
+        }
+
         document.querySelector('.paginator .icon-tabler-chevron-left').addEventListener("click", () => {
             if (pageIndex>0) { 
                 pageIndex-=1;
@@ -424,7 +425,6 @@ function applyFilter() {
     for (let project of projects) {
         for (let option of options) {
             if (project.technologies.includes(option)) {
-                // console.log("O projeto " + project.title + " possui as tecnologias");
                 filteredProjects.push(project);
                 break;
             }
