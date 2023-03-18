@@ -149,7 +149,7 @@
             <div class="info">
                 
                 <h1 class="section-title">Sobre Mim</h1>
-                <p class="description text">Me chamo Eric Eduardo e sou um desenvolvedor Frontend (até o momento). Atualmente estou buscando o desenvolvimento de novas habilidades para a construção de softwares, além de estar me dedicando os  estudos na UFRN, onde curso Bacharelado em Tecnologia da Informação.</p>
+                <p class="description text">Me chamo Eric Eduardo e sou um desenvolvedor Frontend (e estudando Backend). Atualmente estou buscando o desenvolvimento de novas habilidades para a construção de softwares, além de estar me dedicando os estudos na UFRN, onde curso Bacharelado em Tecnologia da Informação.</p>
 
                 <div class="resume text">
                     <div>
@@ -239,7 +239,7 @@
         <section id="contact">
             <div class="content">
                 <h1 class="section-title">Entre em Contato</h1>
-                <p class="text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p class="text">Gostaria muito de ouvir você, envie sugestões, críticas e propostas!</p>
                 <div class="content-info">
                     <div class="info">
                         <div>
@@ -249,7 +249,7 @@
                             </svg>
                             <h3>Telefone</h3>
                         </div>
-                        <p class="text">999999999999</p>
+                        <p class="text">(84) 99695-3044</p>
                     </div>
 
                     <div class="info">
@@ -261,16 +261,17 @@
                               </svg>
                             <h3>Endereço</h3>
                         </div>
-                        <p class="text">Rua Barão do Rio Branco</p>
+                        <p class="text">Rua do Canindés, Alecrim-Natal/RN</p>
                     </div>
                 </div>
             </div>
-            <form>
-                <input id="name" type="text" placeholder="Nome">
-                <input id="email" type="email" placeholder="Email">
-                <input id="subject" type="text" placeholder="Assunto">
-                <textarea id="message" placeholder="Mensagem"></textarea>
-                <button class="btn">
+            <form action="https://api.staticforms.xyz/submit" method="post">
+                <input type="hidden" name="accessKey" value="18c8252a-97ba-4676-bb4f-83fa9db05ba3">
+                <input id="name" type="text" placeholder="Nome" name="name" >
+                <input id="email" type="email" placeholder="Email" name="email">
+                <input id="subject" type="text" placeholder="Assunto" name="subject">
+                <textarea id="message" placeholder="Mensagem" name="message"></textarea>
+                <button class="btn" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <line x1="10" y1="14" x2="21" y2="3" />
@@ -278,6 +279,7 @@
                   </svg>
                   Enviar
                 </button>
+                <input type="hidden" name="redirectTo" value="https://eric-eduardo.github.io/Portifolio/#contact">
             </form>
         </section>
     </main>

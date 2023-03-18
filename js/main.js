@@ -9,7 +9,7 @@ const achievements = [
         title: 'Bacharelado em Tecnologia da Informação',
         startDate: 2022,
         endDate: 0,
-        description: "Iniciei o curso de TI na Universidade do Rio Grande do Norte."
+        description: "Iniciei o curso de TI na Universidade Federal do Rio Grande do Norte (UFRN)."
     }
 ];
 const projects = [
