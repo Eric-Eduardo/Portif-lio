@@ -1,0 +1,60 @@
+@media (max-width: 1100px) {
+    /* ----- index.html ----- */
+    .side-navigation {
+        padding: 25px 25px;
+    }
+    section {
+        padding: 70px 60px;
+    }
+    #about-me img {
+        /* width: 500px; */
+        height: 360px;
+    }
+}
+
+@media (max-width: 850px) {
+    /* ----- index.html ----- */
+    .side-navigation {
+        padding: 25px 0px;
+        width: 90px;
+        align-items: center;
+    }
+    .side-navigation a p{
+        display: none;
+    }
+    .side-navigation .media {
+        flex-direction: column;
+    }
+    #home .text {
+        width: 300px;
+    }
+    section {
+        padding: 70px 20px;
+    }
+
+    #about-me {
+        flex-direction: column;
+    }
+
+    #about-me img {
+        height: auto;
+        width: 250px;
+        align-self: center;
+    }
+}
+
+/* @media (max-width: 750px) {
+    .project-view .view{
+        flex-direction: column-reverse;
+        height: 100%;
+    }
+} */
+
+@media (max-width: 600px) {
+    .side-navigation {
+        display: none;
+    }
+    section {
+        padding: 70px 20px;
+    }
+}

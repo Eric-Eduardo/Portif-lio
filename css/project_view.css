@@ -1,6 +1,6 @@
 .project-view {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     display: flex;
     background-color: rgba(0, 0, 0, 0.6);
@@ -14,45 +14,63 @@
 
 .project-view .view {
     display: flex;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
+    flex-direction: column-reverse;
     background-color: #212131;
-    padding: 20px;
-    width: 90%;
-    height: 50%;
-    border-radius: 10px;
-    gap: 20px;
-    position: relative;
+    /* padding: 20px; */
+    width: 600px;
+    height: 100%;
+    /* border-radius: 10px; */
+    /* gap: 20px; */
+    
+    /* overflow-x: hidden; */
 }
 
 .project-view .image {
-    flex: 2;
-    height: 100%;
-    overflow: hidden;
-    border-radius: 10px;
+    /* flex: 3; */
+    height: 250px;
+    width: 100%;
+    /* overflow: hidden; */
+    /* border-radius: 10px; */
     /* visibility: hidden; */
-    display: block;
+    /* display: block; */
+    border-bottom: 1px solid #302F40;
+    /* background-image: url("../img/captura_jogo_da_velha.png"); */
+    background-position: top;
+    background-size: cover;
+    background-color: #212131;
 }
 
 .project-view img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
-    object-position: top;
+    object-fit: contain;
+    object-position: center;
+
+    backdrop-filter: blur(5px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-.project-view  .icon-tabler-x{
-    position: absolute;
+.project-view .icon-tabler-x{
+    position: fixed;
+    z-index:1;
     top: 10px;
     right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 3px;
+    box-sizing: content-box;
+    border-radius: 30px;
 }
 
 .project-view .content {
     flex: 3;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
-    overflow-x: hidden;
-    padding-right: 6px;
+    /* padding-right: 6px; */
+    position: relative;
+    overflow-y: scroll;
 }
 
 

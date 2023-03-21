@@ -401,6 +401,7 @@ function viewProject(id) {
             <div class="image">
                 <img src="${project.image}">
             </div>`;
+            document.querySelector('.project-view .image').style.backgroundImage =`url('${project.image}')`;
         }
     }
 
