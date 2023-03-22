@@ -314,7 +314,7 @@ h2.title {
 
 .card {
     display: flex;
-    height: 140px;
+    /* height: 140px; */
     border: 1px solid #ffb500;
     border-radius: 7px;
     overflow: hidden;
@@ -351,6 +351,7 @@ h2.title {
 .technologies {
     display: flex;
     gap: 7px;
+    flex-wrap: wrap;
 }
 
 .technologies li {
@@ -362,7 +363,7 @@ h2.title {
 }
 
 .card-img {
-    height: auto;
+    /* height: auto; */
     flex: 1;
     overflow: hidden;
 }

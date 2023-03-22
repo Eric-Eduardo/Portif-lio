@@ -307,7 +307,10 @@ function createDivProject(id, title, technologies, image, about) {
     img.onload = () => {
         const divImage = document.createElement('div');
         divImage.className = 'card-img';
-        divImage.appendChild(img);
+        // divImage.appendChild(img);
+        divImage.style.backgroundImage = `url('${image}')`
+        divImage.style.backgroundSize = 'cover';
+        divImage.style.backgroundPosition = 'top';
         divCard.appendChild(divImage);
     }
 

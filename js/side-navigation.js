@@ -1,10 +1,8 @@
 const sideNavigation = document.querySelector(".side-navigation");
 const main = document.querySelector('main');
 
-let widthSideNavigation = sideNavigation.clientWidth;
-let comp = 0;
-// if (widthSideNavigation<850) comp = 
+window.onresize = changeWidth;
 
-main.style.marginLeft = `${widthSideNavigation}px`;
-
-console.log(widthSideNavigation);
+function changeWidth() {
+    main.style.marginLeft = `${sideNavigation.clientWidth}px`;
+}
