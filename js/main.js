@@ -20,7 +20,7 @@ const projects = [
         technologies: ["HTML", "CSS", "JavaScript"],
         links: {"Site":"https://eric-eduardo.github.io/nlw-setup-habits/", "Github":"https://github.com/Eric-Eduardo/nlw-setup-habits", "Figma":"https://www.figma.com/community/file/1195327109778210238"},
         image: "./img/captura_habits.png",
-        about: "Projeto desenvolvido na NLW Setup, evento promovido pela Rocketsear. Habits consistem em um site para registros/checklist de rotinas diárias, como beber água, caminhar, estudar etc"
+        about: "Projeto desenvolvido na NLW Setup, evento promovido pela Rocketsear. Habits consistem em um site para registros/checklist de rotinas diárias, como beber água, caminhar, estudar etc."
     },
     {
         id: 2,
@@ -111,6 +111,15 @@ const projects = [
         links: {"Site":"https://eric-eduardo.github.io/projeto-slider-pokemon/", "Github":"https://github.com/Eric-Eduardo/projeto-slider-pokemon"},
         image: "./img/captura_pokemon_slider.png",
         about: "Amostra de Pokemons. O site foi desenvolvido no evento MapaDev Week."
+    },
+    {
+        id: 12,
+        title: "MUVJE",
+        date: new Date(2021, 11),
+        technologies: ["HTML", "CSS", "JavaScript", "Java"],
+        links: {"Github":"https://github.com/Aninha1834/Museu", "Documento":"https://drive.google.com/file/d/1nF-1pBR-_FXWiUK2TsLTlp7qPT8H7yka/view?usp=sharing"},
+        image: "",
+        about: `O MUVJE (<strong>Museu Virtual José Elviro</strong>) visa a divulgação de informações sobre o Museu José Elviro e seu acervo, ou seja, o site funciona como uma extensão do museu físico. O projeto foi fruto do Trabalho de Conclusão de Curso do IFRN, denominado "<i>MUVJE: uma proposta de virtualização do Museu José Elviro da cidade de Macau - RN</i>". O projeto foi desenvolvido por mim e por Ana Cláudia de Melo, juntamente com os professores João Hélis, Pedro Jonath e Alana Driziê.`
     }
 ];
 
@@ -285,7 +294,7 @@ function createDivProject(id, title, technologies, image, about) {
     pText.className = 'text';
 
     h2Title.innerText = title;
-    pText.innerText = about;
+    pText.innerHTML = about;
 
     divCardContent.appendChild(h2Title);
     divCardContent.appendChild(pText);
@@ -394,7 +403,7 @@ function viewProject(id) {
         document.querySelector('.project-view .links').innerHTML += `<a href=${project.links[key]} target="_blank"><li>${key}</li></a>`;
     }
 
-    document.querySelector('.project-view .description').innerText = project.about;
+    document.querySelector('.project-view .description').innerHTML = project.about;
 
     if (project.image) {
         var img = new Image();
