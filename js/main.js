@@ -178,7 +178,7 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname.
 
 function loadProjects() {
     divProjectsContent.innerHTML = '';
-
+    let time = 1;
     for (let i = pageIndex*intemsPerPage; i<(pageIndex*intemsPerPage)+intemsPerPage; i++) {
         
         if (!filteredProjects[i]) { break }
@@ -186,6 +186,12 @@ function loadProjects() {
         const item = createDivProject(filteredProjects[i].id, filteredProjects[i].title, filteredProjects[i].technologies, filteredProjects[i].image, filteredProjects[i].about);
 
         item.addEventListener('click', () => {viewProject(filteredProjects[i].id)});
+
+        
+        item.style.opacity = '0';
+        item.style.animationDelay = `.${time}s`;
+        item.classList.add('animation-emerge-left');
+        time+=1;
 
         divProjectsContent.appendChild(item);
     }
@@ -419,11 +425,42 @@ function viewProject(id) {
 
     document.querySelector('.project-view').style.visibility = 'visible';
     document.querySelector('html').style.overflow = 'hidden';
+
+    // Adição das animações
+    document.querySelector('.project-view').style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+    document.querySelector('.project-view .title').style.animationDelay = ".1s";
+    document.querySelector('.project-view .technologies').style.animationDelay = ".2s";
+    document.querySelector('.body-content .subtitle:nth-child(1)').style.animationDelay = ".3s";
+    document.querySelector('.project-view .links').style.animationDelay = ".4s";
+    document.querySelector('.project-view .subtitle:nth-child(3)').style.animationDelay = ".5s";
+    document.querySelector('.project-view .text-content').style.animationDelay = ".6s";
+
+    document.querySelector('.project-view .view').classList.remove('animation-zoom-out');
+    document.querySelector('.project-view .view').classList.add('animation-zoom-in');
+    document.querySelector('.project-view .title').classList.add('animation-emerge-left');
+    document.querySelector('.project-view .technologies').classList.add('animation-emerge-bottom');
+    document.querySelector('.body-content .subtitle:nth-child(1)').classList.add('animation-emerge-bottom');
+    document.querySelector('.project-view .links').classList.add('animation-emerge-bottom');
+    document.querySelector('.body-content .subtitle:nth-child(3)').classList.add('animation-emerge-bottom');
+    document.querySelector('.project-view .text-content').classList.add('animation-emerge-bottom');
 }
 
 function closeViewProject() {
-    document.querySelector('.project-view').style.visibility = 'hidden';
+    document.querySelector('.project-view .view').classList.add('animation-zoom-out');
+    document.querySelector('.project-view').style.backgroundColor = "transparent";
+
+    setTimeout(() => {document.querySelector('.project-view').style.visibility = 'hidden'}, 100);
+    // document.querySelector('.project-view').style.visibility = 'hidden';
     document.querySelector('html').style.overflow = 'visible';
+    
+    // Remoção das animações
+    document.querySelector('.project-view .view').classList.remove('animation-zoom-in');
+    document.querySelector('.project-view .title').classList.remove('.animation-emerge-left');
+    document.querySelector('.project-view .technologies').classList.remove('animation-emerge-bottom');
+    document.querySelector('.body-content .subtitle:nth-child(1)').classList.remove('animation-emerge-bottom');
+    document.querySelector('.project-view .links').classList.remove('animation-emerge-bottom');
+    document.querySelector('.body-content .subtitle:nth-child(3)').classList.remove('animation-emerge-bottom');
+    document.querySelector('.project-view .text-content').classList.remove('animation-emerge-bottom');
 }
 
 function applyFilter() {

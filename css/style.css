@@ -46,8 +46,12 @@ body {
     border-radius: 7px;
     border: none;  
     width: fit-content;
+    transition: background .3s;
 }
 
+.button-800:hover {
+    background-color: #fcce59;
+}
 
 .text {
     /* color: #9696ab; */
@@ -227,7 +231,7 @@ h2.title {
     font-weight: 500;
 }
 
-#btn-download {
+/* #btn-download {
     background-color: #FFB500;
     width: 180px;
     color: white;
@@ -238,12 +242,7 @@ h2.title {
     gap: 7px;
     padding: 10px;
     border-radius: 7px;
-    transition: background .3s;
-}
-
-#btn-download:hover {
-    background-color: #fcce59;
-}
+} */
 
 /* CONQUISTAS */
 
@@ -389,7 +388,7 @@ h2.title {
     transition: color .4s, background-color .4s;
 }
 
-.icon-tabler-arrow-right {
+.icon-tabler-arrow-right, .icon-tabler-arrow-left {
     transition: stroke .4s, transform .2s;
 }
 
@@ -399,10 +398,17 @@ h2.title {
     /* stroke: #FFB500; */
 }
 
-.btn-see-more:hover .icon-tabler-arrow-right {
+.btn:hover .icon-tabler-arrow-right {
     stroke: #FFB500;
     transform: translateX(5px);
 }
+
+.btn:hover .icon-tabler-arrow-left {
+    /* stroke: #FFB500; */
+    transform: translateX(-5px);
+}
+
+
 
 /* CONTATO */
 
@@ -462,7 +468,7 @@ h2.title {
     outline: 1px solid #FFB500;
 }
 
-#contact form button {
+/* #contact form button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -476,11 +482,7 @@ h2.title {
     font-weight: 600;
     width: 150px;
     transition: all .4s;
-}
-
-#contact form button:hover {
-    background-color: #fcce59;
-}
+} */
 
 #contact ::-webkit-input-placeholder {
     color: #7e8680;
