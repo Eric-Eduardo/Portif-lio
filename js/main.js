@@ -120,15 +120,37 @@ const projects = [
         links: {"Github":"https://github.com/Aninha1834/Museu", "Documento":"https://drive.google.com/file/d/1nF-1pBR-_FXWiUK2TsLTlp7qPT8H7yka/view?usp=sharing"},
         image: "",
         about: `O MUVJE (<strong>Museu Virtual José Elviro</strong>) visa a divulgação de informações sobre o Museu José Elviro e seu acervo, ou seja, o site funciona como uma extensão do museu físico. O projeto foi fruto do Trabalho de Conclusão de Curso do IFRN, denominado "<i>MUVJE: uma proposta de virtualização do Museu José Elviro da cidade de Macau - RN</i>". O projeto foi desenvolvido por mim e por Ana Cláudia de Melo, juntamente com os professores João Hélis, Pedro Jonath e Alana Driziê.`
+    },
+    {
+        id: 13,
+        title: "Nlw Expert Notes",
+        date: new Date(2024, 1),
+        technologies: ["HTML", "CSS", "JavaScript", "ReactJS", "TypeScript"],
+        links: {"Github":"https://github.com/Eric-Eduardo/nlw-expert-notes", "Site":"https://nlw-expert-notes-ruddy.vercel.app/"},
+        image: "./img/img-nlw-expert-notes.png",
+        about: "O projeto foi desenvolvido durante o evento <i>nlw expert</i>, da <i>Rocketseat</i>. O site consisite em um sistema de notas (anotações), onde o usuário pode criar notas em <strong>texto ou áudio</strong>."
+    },
+    {
+        id: 14,
+        title: "Campo Minado",
+        date: new Date(2023, 11),
+        technologies: ["HTML", "CSS", "JavaScript"],
+        links: {"Github":"https://github.com/Eric-Eduardo/Campo-minado", "Site":"https://campo-minado-delta.vercel.app/"},
+        image: "./img/img-campo-minado.png",
+        about: "O clássico jogo Campo Minado."
     }
 ];
 
-const idFavoriteProjects = [2, 3, 4, 5];
+const options = ["HTML", "CSS", "JavaScript", "Java", "ReactJS", "TypeScript"];
+const idFavoriteProjects = [13, 1, 4, 5];
 const divProjectsContent = document.querySelector('.projects-content');
 const months = ['jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 let filteredProjects = projects;
 let pageIndex = 0;
 let intemsPerPage = 4;
+
+projects.sort(sortProjectsByDate);
+
 
 document.querySelector('.project-view').addEventListener('click', (event) => {
     if (event.target.className=="project-view" || event.target.localName=="svg" || event.target.parentNode.localName=="svg") closeViewProject()
@@ -158,6 +180,7 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname.
     }
 } else {
     
+    loadOptions();
     document.querySelector('#check-all').addEventListener('click', () => {
         let labelOptions = document.querySelectorAll('.options input');
         for (let label of labelOptions) {
@@ -174,6 +197,15 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname.
     loadProjects();
 
     document.querySelector('.apply-filter').addEventListener('click', applyFilter);
+}
+
+function loadOptions() {
+    var optionElement = document.querySelector('.options');
+    optionElement.innerHTML = '';
+    for (var opt of options) {
+        optionElement.innerHTML += `<input type="checkbox" id="${opt.toLowerCase()}" name="technology">`;
+        optionElement.innerHTML += `<label class="btn" for="${opt.toLowerCase()}">${opt}</label>`;
+    }
 }
 
 function loadProjects() {
@@ -471,18 +503,32 @@ function applyFilter() {
     for (let name of document.querySelectorAll('.filter .options input:checked + label')) {
         options.push(name.innerText);
     }
+
+    if(options.length == 0) {
+        filteredProjects = projects;
+    } else {
     
-    for (let project of projects) {
-        for (let option of options) {
-            if (project.technologies.includes(option)) {
-                filteredProjects.push(project);
-                break;
+        for (let project of projects) {
+            for (let option of options) {
+                if (project.technologies.includes(option)) {
+                    filteredProjects.push(project);
+                    break;
+                }
             }
         }
     }
-
+    
     loadProjects();
 }
+
+function sortProjectsByDate(a, b) {
+    // a<b: -1, a>b: 1, a=b: 0 
+    if (a.date<b.date) return 1;
+    else if (a.date>b.date) return -1;
+    else return 0;
+}
+
+
 
 /*
 const divViewProject = document.querySelector('.project-view');
@@ -526,7 +572,6 @@ for (idc in achievements) {
 }
 
 //Ordenar os projetos em ordem decrescente pela data
-projects.sort(sortProjectsByDate);
 
 
 // Mostra os projetos na página inicial
@@ -542,12 +587,6 @@ elementCloseProject.addEventListener('click', closeViewProject);
 divViewProject.addEventListener('click', (event) => {if (event.target.className=="project-view") closeViewProject()});
 
 //Funções
-function sortProjectsByDate(a, b) {
-    // a<b: -1, a>b: 1, a=b: 0 
-    if (a.date<b.date) return 1;
-    else if (a.date>b.date) return -1;
-    else return 0;
-}
 
 function insertAchievement(title, period, description) {
 
