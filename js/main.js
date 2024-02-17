@@ -141,6 +141,7 @@ const projects = [
     }
 ];
 
+
 const options = ["HTML", "CSS", "JavaScript", "Java", "ReactJS", "TypeScript"];
 const idFavoriteProjects = [13, 1, 4, 5];
 const divProjectsContent = document.querySelector('.projects-content');
