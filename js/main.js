@@ -69,21 +69,21 @@ const projects = [
     },
     {
         id: 7,
-        title: "Mini Projeto Lâmpada",
-        date: new Date(2022, 9),
+        title: "Spotify",
+        date: new Date(2024, 0),
         technologies: ["HTML", "CSS", "JavaScript"],
-        links: {"Github":"https://github.com/Eric-Eduardo/mini-projeto-lampada"},
-        image: "./img/captura_mini_projeto_lampada.png",
-        about: "Mini projeto de acender, apagar e quebrar uma lâmpada. O projeto foi fruto apenas do início do meu aprendizado de JavaScript."
+        links: {"Github":"https://github.com/Eric-Eduardo/Spotify-imersao-alura"},
+        image: "./img/img-spotify-imersao-alura.png",
+        about: "Projeto desenvolvido no evento da imersão alura. Consiste no clone da página inicial do spotify. O objetivo do projeto é praticar HTML, CSS e JS."
     },
-    {
+    {// INSERIR NO GITHUB
         id: 8,
-        title: "Mini Projeto Semáforo",
-        date: new Date(2022, 9),
+        title: "Weather App",
+        date: new Date(2024, 1),
         technologies: ["HTML", "CSS", "JavaScript"],
-        links: {"Github":"https://github.com/Eric-Eduardo/mini-projeto-semaforo"},
-        image: "./img/captura_mini_projeto_semaforo.png",
-        about: "Mini projeto de um cemáforo, no qual é possível modificar o estado do semáforo manualmente ou deixar como automático. O projeto foi fruto apenas do início do meu aprendizado de JavaScript."
+        links: {},
+        image: "./img/img-weather-app.png",
+        about: "Sistema onde é possível verificar informações sobre o clima de uma determinada cidade. O sistema faz o uso da Weather API."
     },
     {
         id: 9,
@@ -118,7 +118,7 @@ const projects = [
         date: new Date(2021, 11),
         technologies: ["HTML", "CSS", "JavaScript", "Java"],
         links: {"Github":"https://github.com/Aninha1834/Museu", "Documento":"https://drive.google.com/file/d/1nF-1pBR-_FXWiUK2TsLTlp7qPT8H7yka/view?usp=sharing"},
-        image: "",
+        image: "./img/img-muvje.png",
         about: `O MUVJE (<strong>Museu Virtual José Elviro</strong>) visa a divulgação de informações sobre o Museu José Elviro e seu acervo, ou seja, o site funciona como uma extensão do museu físico. O projeto foi fruto do Trabalho de Conclusão de Curso do IFRN, denominado "<i>MUVJE: uma proposta de virtualização do Museu José Elviro da cidade de Macau - RN</i>". O projeto foi desenvolvido por mim e por Ana Cláudia de Melo, juntamente com os professores João Hélis, Pedro Jonath e Alana Driziê.`
     },
     {
@@ -138,12 +138,30 @@ const projects = [
         links: {"Github":"https://github.com/Eric-Eduardo/Campo-minado", "Site":"https://campo-minado-delta.vercel.app/"},
         image: "./img/img-campo-minado.png",
         about: "O clássico jogo Campo Minado."
+    },
+    {
+        id: 15,
+        title: "Image Repeat Pattern Creator",
+        date: new Date(2024, 6),
+        technologies: ["HTML", "CSS", "JavaScript"],
+        links: {"Github":"https://github.com/Eric-Eduardo/image-repeat-pattern-creator", "Site":"https://eric-eduardo.github.io/image-repeat-pattern-creator/"},
+        image: "./img/image-repeat-pattern-creator.png",
+        about: "De modo geral, a ferramenta auxilia na criação de 'imagens padronizadas'. Essas imagens, quando colocadas uma ao lado da outra, dão uma impressão de continuidade. É muito utilizada como background."
+    },
+    {
+        id: 16,
+        title: "LanchoNet",
+        date: new Date(2024, 4),
+        technologies: ["HTML", "CSS", "JavaScript", "ReactJS"],
+        links: {},
+        image: "./img/img-lanchonet.png",
+        about: "Projeto pessoa que consiste na criação de um lanchonete virtual. O objetivo principal é praticar as habilidades em front-end."
     }
 ];
 
 
 const options = ["HTML", "CSS", "JavaScript", "Java", "ReactJS", "TypeScript"];
-const idFavoriteProjects = [13, 1, 4, 5];
+const idFavoriteProjects = [13, 12, 16, 7];
 const divProjectsContent = document.querySelector('.projects-content');
 const months = ['jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 let filteredProjects = projects;
@@ -157,6 +175,9 @@ document.querySelector('.project-view').addEventListener('click', (event) => {
     if (event.target.className=="project-view" || event.target.localName=="svg" || event.target.parentNode.localName=="svg") closeViewProject()
 });
 
+window.onload = ()=> {
+    document.getElementById('age').innerHTML = `<span>Idade: </span>${Math.floor((Date.now() - (new Date("2002-04-01")))/31557600000)}`
+}
 
 if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('Portifolio/')) {
     // Inserir as conquistas
